@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import sky from '../assets/sky.png';
 import ground from '../assets/platform.png';
 import dude from '../assets/dude.png';
+import foreverMp3 from '../audio/forever.mp3';
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -13,6 +14,7 @@ class Game extends Phaser.Scene {
     this.load.image('sky', sky);
     this.load.image('ground', ground);
     this.load.spritesheet('dude', dude, { frameWidth: 32, frameHeight: 48 });
+    this.load.audio('forever', [foreverMp3, foreverMp3]);
   }
 
   create() {
@@ -58,6 +60,8 @@ class Game extends Phaser.Scene {
 
     // set collides between Player and grounds
     this.physics.add.collider(this.player, this.platforms);
+    this.bgMusic = this.sound.add('forever');
+    this.bgMusic.play();
   }
 
   update() {
